@@ -32,13 +32,17 @@ Step 2: For this app is to create server.js file and put these lines of code:
         app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 
 Step 3: Open the postman application and put the url for getting request from
-port 5000
+        port 5000
         After this:
                 app.get('/', (req, res) =>
                 res.json({ msg: 'Welcome to the ContactKeeper API...' })
                 ); lines of code gives you teh written output on postman. 
 
 Step 4: Create a folder routes and put files, contacts.js, users.js and auth.js
-inside routes folder. After that we defined the routes fro each file that are
-created within in routes folder. 
-        as: app.use('/api/name of file', require(location of the file in the directory))
+        inside routes folder. After that we defined the routes fro each file that are
+        created within in routes folder. 
+        as: app.use('/api/name of file', require(location of the file in the
+        directory))
+        
+Step 5: Creating and linking the database.
+        first create directory called config and add file named, default.json(The purpose of this file is for global variables)

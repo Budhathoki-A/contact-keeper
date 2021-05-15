@@ -1,0 +1,38 @@
+// This is to register an user in the backend
+
+// Bring in epress at first
+const express = require('express');
+
+// Create a variable called router and set that to Router
+const router = express.Router();
+
+// @route           GET api/contacts
+// @description     Get all users from contacts
+// @access          Private
+router.get('/', (req, res) => {
+  res.send('Get all contact');
+});
+
+// @route           POST api/contacts
+// @description     Add new contact
+// @access          Private
+router.post('/', (req, res) => {
+  res.send('Add contact');
+});
+
+// @route           PUT api/contacts/:id
+// @description     Update contact
+// @access          Private
+router.put('/:id', (req, res) => {
+  res.send('Update contact');
+});
+
+// @route           DELETE api/contacts/:id
+// @description     Delete contact
+// @access          Private
+router.delete('/:id', (req, res) => {
+  res.send('Delete contact');
+});
+
+// Export the router
+module.exports = router;

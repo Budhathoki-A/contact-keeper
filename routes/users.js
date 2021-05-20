@@ -9,6 +9,9 @@ const { check, validationResult } = require('express-validator');
 // Create a variable called router and set that to Router
 const router = express.Router();
 
+// Bring in bcrypt for password hashing
+const bcrypt = require('bcryptjs');
+
 // Bringing in the UserSchema model
 const User = require('../models/User');
 
@@ -34,9 +37,9 @@ router.post(
     }
 
     const { name, email, password } = req.body;
-
     try {
       let user = await User.findOne({ email });
+
       if (user) {
         return res.status(400).json({ msg: 'User already exists' });
       }
@@ -47,8 +50,18 @@ router.post(
         password,
       });
 
+      // Hash the password with bycrypt
       const salt = await bcrypt.genSalt(10);
-    } catch (err) {}
+
+      user.password = await bcrypt.hash(password, salt);
+
+      await user.save();
+
+      res.send('User saved');
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server error');
+    }
   }
 );
 

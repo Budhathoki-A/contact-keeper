@@ -12,6 +12,12 @@ const router = express.Router();
 // Bring in bcrypt for password hashing
 const bcrypt = require('bcryptjs');
 
+// Bringing in Json Web token
+const jwt = require('jsonwebtoken');
+
+// Bringing in config fro secret for json web token
+const config = require('config');
+
 // Bringing in the UserSchema model
 const User = require('../models/User');
 
@@ -57,7 +63,25 @@ router.post(
 
       await user.save();
 
-      res.send('User saved');
+      // Object that we wanna send in the token
+      const payload = {
+        user: {
+          id: user.id,
+        },
+      };
+
+      // to Generate a token, we have to sign it
+      jwt.sign(
+        payload,
+        config.get('jwtSecret'),
+        {
+          expiresIn: 360000,
+        },
+        (err, token) => {
+          if (err) throw err;
+          res.json({ token });
+        }
+      );
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server error');

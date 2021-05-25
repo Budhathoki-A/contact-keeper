@@ -62,6 +62,8 @@ Step 6: Creating folder called models and ad 2 files namely, User.js and
         Inside the models we create something called schema and that model file
         is then brought to any route files that we have
 
-Step 7: From User.js which is in model folder we bring it to users.js(in route
+Step 7: From User.js, which is in model folder we bring it to users.js(in route
         folder) and then we write code as res.send(req.body);
         After that we init middleware to use the res.body
+
+Step 8: 

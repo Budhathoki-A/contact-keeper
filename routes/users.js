@@ -9,6 +9,9 @@ const { check, validationResult } = require('express-validator');
 // Create a variable called router and set that to Router
 const router = express.Router();
 
+// Bringing in the UserSchema model
+const User = require('../models/User');
+
 // Bring in bcrypt for password hashing
 const bcrypt = require('bcryptjs');
 
@@ -17,9 +20,6 @@ const jwt = require('jsonwebtoken');
 
 // Bringing in config fro secret for json web token
 const config = require('config');
-
-// Bringing in the UserSchema model
-const User = require('../models/User');
 
 // @route           POST api/users
 // @description     Register a user
